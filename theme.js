@@ -12,20 +12,26 @@ export default {
   h1: {
     fontFamily: 'Newzald, serif',
     color: 'white',
-    fontSize: 30,
+    fontSize: '30pt',
     fontWeight: 400,
   },
-  heading: {
-    fontFamily: '"DIN OT"',
+  h2: {
+    fontFamily: '"DIN OT", serif',
     color: 'white',
-    fontSize: 18,
+    fontSize: '18pt',
+    fontWeight: 300,
+  },
+  h3: {
+    fontFamily: '"DIN OT", serif',
+    color: 'white',
+    fontSize: '18pt',
     fontWeight: 300,
   },
   p: {
-    fontFamily: '"DIN OT Light"',
+    fontFamily: '"DIN OT"',
     color: 'white',
-    fontSize: 15,
-    fontWeight: 400,
+    fontSize: '15pt',
+    fontWeight: 300,
   },
 
   // Customize your presentation theme here.
