@@ -15,5 +15,8 @@
   "devDependencies": {
     "mdx-deck": "^1.6.7"
   },
-  "name": "ta-kontrollen-over-konsollen"
+  "name": "ta-kontrollen-over-konsollen",
+  "dependencies": {
+    "@bekk/mdx-deck-theme": "github:selbekk/mdx-deck-theme"
+  }
 }

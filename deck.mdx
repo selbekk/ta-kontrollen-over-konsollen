@@ -1,16 +1,23 @@
 import { Head } from 'mdx-deck'
 import Button from './Button';
+import { StandaloneHeading } from '@bekk/mdx-deck-theme';
+import CoverSlide from './CoverSlide';
+import FullPageVideoBackground from './FullPageVideoBackground';
 
-export { default as theme } from './theme'
+export { darkTheme as theme } from '@bekk/mdx-deck-theme';
 
 <Head>
   <title>Ta kontrollen over konsollen</title>
 </Head>
 
-# Ta kontrollen over konsollen
-### En introduksjon til `console.log()` 👨‍💻
-
-Kristofer Selbekk, Bekk Fagdag
+<FullPageVideoBackground src="./bekk-bg-loop.mp4">
+  <CoverSlide
+    where="Bekk Fagdag"
+    date="19. oktober"
+    title="Ta kontrollen over konsollen"
+    presentedBy="Kristofer Selbekk"
+  />
+</FullPageVideoBackground>
 
 ---
 
@@ -30,7 +37,9 @@ Kristofer Selbekk, Bekk Fagdag
 
 ---
 
-# Basics
+<StandaloneHeading>
+  Basics
+</StandaloneHeading>
 
 ---
 
@@ -90,7 +99,9 @@ console.info(
 
 ---
 
-# Formatering
+<StandaloneHeading>
+  Formatering
+</StandaloneHeading>
 
 ---
 
@@ -154,7 +165,9 @@ console.groupEnd('action');
 
 ---
 
-# Debugging
+<StandaloneHeading>
+  Debugging
+</StandaloneHeading>
 
 ---
 
@@ -258,11 +271,12 @@ console.profileEnd('sortering');
 
 ---
 
-# Sjekk ut
+## Sjekk ut
 
 - http://bit.ly/konsoll-referanse
 - http://bit.ly/konsoll-medium-artikkel
 
 ---
-
-# 👋 Takk for mej
+<StandaloneHeading>
+  👋 Takkhej
+</StandaloneHeading>
