@@ -20,124 +20,75 @@ export { darkTheme as theme } from '@bekk/mdx-deck-theme';
 
 ---
 
-## Logging er viktig!
+<StandaloneHeading>
+  👋
+</StandaloneHeading>
 
-- dokumentasjon
-- debugging
-- verktøy
+```notes
+Hvem bruker breakpoints i Chrome?
+Hvem skriver console.log? 
+Denne talken er til latsabbene
+```
 
 ---
 
-## La oss titte på
-- loggnivå
-- formatering
-- gruppering
-- timing
+## Consolen er viktig!
+
+- Eksperimentere
+- Utforske
+- Debugge
 
 ---
 
 <StandaloneHeading>
-  Basics
+  cmd + option + j
 </StandaloneHeading>
 
----
+```notes
+Denne talken skal jeg ta deg gjennom noen gode tips, triks og teknikker som gjør 
+at du aldri vil se på consolen din på samme måte igjen.
 
-## Loggnivå
-```js
-console.log('hei fagdagen')
-
-console.debug('lavnivå-logging')
-console.info('informativ logging')
-console.warn('advar om deprecations etc')
-console.error('si ifra når noe gikk galt')
+console-APIet
+når consolen er åpen
+Så la oss hoppe inn!
 ```
-
-<Button onClick={() => {
-  console.debug('lavnivå-logging')
-  console.info('informativ logging')
-  console.warn('advar om deprecations etc')
-  console.error('si ifra når noe gikk galt')
-}}>Vis meg!</Button>
-
----
-
-## String-konkatenering
-```js
-console.info(
-  'Hei %s, du er %d år gammel', 
-  user.name, 
-  user.age,
-);
-```
-
-<Button onClick={() => {
-  const user = { name: 'Kristofer', age: 31 };
-  console.info(
-    'Hei %s, du er %d år gammel', 
-    user.name, 
-    user.age,
-  );
-}}>Vis meg!</Button>
-
----
-
-## Styling
-```js
-console.info(
-  'Du kan også %cstyle konsollen din', 
-  'background: darkblue; color: lightyellow; padding: 2px; font-style: italic;'
-)
-```
-
-<Button onClick={() => {
-  console.info(
-  'Du kan også %cstyle konsollen din', 
-  'background: darkblue; color: lightyellow; padding: 2px; font-style: italic;'
-)
-}}>Vis meg!</Button>
 
 ---
 
 <StandaloneHeading>
-  Formatering
+  console.logaritmer?
 </StandaloneHeading>
 
----
-
-## Objekter og arrays
-```js
-const farkost = { fremdrift: 'damp', navn: 'tog' };
-
-console.info('Farkost:', farkost);
+```notes
+Console-APIet er kraftig. Nesten så kraftig at det eneste consolen ikke kan 
+gjøre er logaritmer. 
+Vanligvis logger man - men man kan gjøre så mye mer!
+Vise dere litt av hva som er mulig - du vil aldri skrive console.log igjen!
 ```
 
-<Button onClick={() => {
-  const farkost = { fremdrift: 'damp', navn: 'tog' };
-  console.info('Farkost:', farkost);
-}}>Vis meg!</Button>
-
 ---
 
-## Tabeller!
+## Selvdokumenterende kode ftw
+
 ```js
-console.table([
-  { navn: 'Kristofer', faggruppe: 'React' },
-  { navn: 'Erik', faggruppe: 'JavaScript' },
-  { navn: 'Olav', faggruppe: 'Sjefing' },
-])
+console.debug('Kun for spesielt interesserte');
+console.info('Fortell hva som skjer i koden din!');
+console.warn('Her er ikke ting helt på stell');
+console.error('Shit pomfritt! 💩🍟');
 ```
 
-<Button onClick={() => {
-  console.table([
-    { navn: 'Kristofer', faggruppe: 'React' },
-    { navn: 'Erik', faggruppe: 'JavaScript' },
-    { navn: 'Olav', faggruppe: 'Sjefing' },
-  ])
-}}>Vis meg!</Button>
+```notes
+Da vi var ferske fikk vi vite at koden vår burde være selvdokumenterende!
+La oss gjøre som i java, og dokumentere med kommentara!
+
+Vi har loggnivåer innebygget i språket!
+- warn og error kommer med stack trace
+```
 
 ---
 
-## Gruppering
+## Woop woop console.group
+
 ```js
 console.group('action');
 console.info('previous state', state);
@@ -146,136 +97,197 @@ console.info('next state', reducer(state, action));
 console.groupEnd('action');
 ```
 
-<Button onClick={() => {
-  const action = { type: 'SAY_HI', name: 'Kris' };
-  const state = { salute: '' };
-  const reducer = (prevState, theAction) => {
-    if (theAction.type === 'SAY_HI') {
-      return { salute: `Hi ${theAction.name}` };
-    }
-    return state;
-  };
-  console.group('action');
-  console.info('previous state', state);
-  console.info('action payload', action);
-  console.info('next state', reducer(state, action));
-  console.groupEnd('action');
-}}>Vis meg!</Button>
+```notes
+Har dere brukt Redux? Redux Logger?
+Kan komme mye informasjon, smart å gruppere!
+console.group lar deg gruppere flere lag innover!
+```
+---
+
+## console.table
+
+![console.table](/tabell.png)
+
+```notes
+Dette er et utrolig praktisk triks jeg aldri har brukt selv.
+Lar deg skrive ut en tabell i konsollen!
+Usikker på hva den kan brukes til, men om det er noen trøst så er det ikke like 
+tåpelig som den neste tingen jeg skal vise dere!
+```
+---
+
+## Se så pent!
+
+![se så pent!](/so-pretty.png)
+
+```notes
+Dette! Dette er tåpelig! Og så moro! 
+Du kan bruke CSS for å style console-outputen din
+Kan være smart når man lager verktøy eller vil vise advarsler
+```
+
+---
+
+## it's about console.time ⏰
+
+```js
+console.time();
+await sakteKode();
+console.timeEnd();
+```
+
+```notes
+Når man er ferdig å leke med fargestifter kan man begynne å gjøre optimalisere.
+console.time lar deg time visse deler av koden din
+mer detalj? console.profile lager en komplett minneprofil til deg!
+```
+
+---
+
+## stop! 🔨 debug time!
+
+```js
+debugger;
+```
+
+![hammertime](/hammertime.webp)
+
+```notes
+DevTools er utrolig kraftig - og av og til må jeg også krype til korset og 
+bruke debuggeren deres. Da er det greit at jeg kan lage meg et breakpoint 
+programmatisk!
+```
 
 ---
 
 <StandaloneHeading>
-  Debugging
+  Eksperimentere 👩‍🔬
 </StandaloneHeading>
 
----
-
-
-## Stack-trace!
-```js
-console.trace('💥 bang')
+```notes
+Så nå har vi logget og debugget litt - men hva med å eksperimentere?
+Av og til vil man bare teste noe, endre noe litt kjapt, eller bare ha det gøy 
+med å endre overskrifter på Dagbladet
 ```
 
-<Button onClick={() => {
-  console.trace('💥 bang')
-}}>Vis meg!</Button>
-
 ---
 
-## Minne
-```js
-console.log(console.memory);
-```
-
-<Button onClick={() => {
-  console.log(console.memory);
-}}>Vis meg!</Button>
-
----
-
-## Timing
-```js
-console.time('TREG_KODE');
-const sortertListe = sorterListe(liste)
-console.timeEnd('TREG_KODE');
-```
-
-<Button onClick={() => {
-  const sorterListe = liste => ([...liste].sort());
-  const liste = 'dette er en liten setning';
-  
-  console.time('TREG_KODE');
-  const sortertListe = sorterListe(liste)
-  console.timeEnd('TREG_KODE');
-}}>Vis meg!</Button>
-
----
-
-## Asserts
-```js
-console.assert(
-  Math.random() > 0.5, 
-  'Tilfeldig tall var ikke over .5', 
-);
-```
-
-<Button onClick={() => {
-  const rando = Math.random();
-  console.assert(
-    rando > 0.5, 
-    'Tilfeldig tall var ikke over .5', 
-    rando
-  );
-}}>Vis meg!</Button>
-
----
-
-## Telling
-```js
-const lyder = ['tøff', 'tøff', 'tøff'];
-for (let lyd in lyder) {
-  console.count('lyd');
-}
-
-console.countReset('lyd');
-```
-
-<Button onClick={() => {
-  const lyder = ['tøff', 'tøff', 'tøff'];
-  for (let lyd in lyder) {
-    console.count('lyd');
-  }
-  console.countReset('lyd');
-}}>Vis meg!</Button>
-
----
-
-## Profilering
-
-```js
-console.profile('sortering');
-const sortertListe = sorterListe(liste)
-console.profileEnd('sortering');
-```
-
-<Button onClick={() => {
-  const sorterListe = liste => ([...liste].sort());
-  const liste = 'dette er en liten setning';
-  
-  console.profile('sortering');
-  const sortertListe = sorterListe(liste)
-  console.profileEnd('sortering');
-}}>Vis meg!</Button>
-
-
----
-
-## Sjekk ut
-
-- http://bit.ly/konsoll-referanse
-- http://bit.ly/konsoll-medium-artikkel
-
----
 <StandaloneHeading>
-  👋 Takkhej
+  Tilgang til variabler 🔑
 </StandaloneHeading>
+
+```notes
+Visste du at når du har stoppet på breakpointet over, så har du tilgang til alt 
+koden din har tilgang til i scopet den kjører i? Det lar deg eksperimentere med 
+og manipulere koden din!
+```
+
+---
+
+## It's all about the $$
+
+```js
+$('#css-selector')
+$$('.css-selector')
+```
+
+```notes
+jQuery er kjempegammelt, men det var diggere å kunne skrive $ enn document.querySelector.
+I consolen kan du fortsatt leve som det var 2009
+Funksjonen $ er et alias for document.querySelector 
+Funksjonen $$ er et alias for document.querySelectorAll
+```
+
+---
+
+<StandaloneHeading>
+$0, $1, $2, $3, $4, $_, $x
+</StandaloneHeading>
+
+```notes
+Det er flere dollartegn å vite om $0 1 2 3 og 4 lar deg referere til de siste 5
+elementene du refererte til i consolen.
+
+Variablen $_ holder på den siste kalkulerte verdien
+
+$x er en funksjon som lar deg sende inn en xpath. Wat?
+```
+
+---
+
+## Hacky Hacky
+
+```js
+document.body.contenteditable = true;
+```
+
+```notes
+Hvis vennene dine tror du er en hacker fordi du kan endre overskriftene på 
+din favorittnettavis som du var en redaktør, så er dette trikset for deg. 
+Sett contenteditable til true, og hele websiden er redigerbar på 1-2-3!
+```
+
+---
+
+## Inspektør! 🕵️‍
+
+```js
+inspect($('#logo'))
+```
+
+```notes
+Har du funnet et DOM-objekt du vil inspisere nærmere, kan du kalle inspect-funksjonen.
+Da åpnes DOM-inspektøren, og fokuserer elementet du oppga.
+
+Perfekt for når du debugger CSS og er for lat til å bruke musepekeren.
+```
+
+---
+
+## Ninja-triks
+
+```js
+keys({ console: '💻', af: '🐶' });
+values({ console: '💻', af: '🐶' });
+```
+
+```notes
+Det finnes mange flere slike innebygde snarvei-funksjoner. Trenger du nøklene 
+eller verdiene til et objekt? 
+
+Da kan du bruke keys and values funksjonene!
+```
+
+---
+
+## Kopier ting! 📋
+
+```js
+copy(keys(someData))
+```
+
+```notes
+Trenger du data fra DOMen? Hva med navn på deltakerne til en meetup f.eks?
+Hent dem ut, og kopier variabler direkte til clipboardet med copy!
+```
+
+---
+
+<StandaloneHeading>
+  cmd + k
+</StandaloneHeading>
+
+```notes
+Da er det bare å trykke cmd + k og cleare konsollen, for å gjøre klar for enda 
+mer moro.
+```
+
+---
+
+<StandaloneHeading>
+  👋👋👋
+</StandaloneHeading>
+```notes
+Jeg håper du lærte et par nyttige triks i dag, og ikke minst ble interessert i å 
+undersøke mulighetene på egenhånd! Takk for meg - og ha en fin fagdag!
+```

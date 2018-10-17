@@ -1,0 +1,281 @@
+import { Head } from 'mdx-deck'
+import Button from './Button';
+import { StandaloneHeading, CoverSlide } from '@bekk/mdx-deck-theme';
+import FullPageVideoBackground from './FullPageVideoBackground';
+
+export { darkTheme as theme } from '@bekk/mdx-deck-theme';
+
+<Head>
+  <title>Ta kontrollen over konsollen</title>
+</Head>
+
+<FullPageVideoBackground src="./bekk-bg-loop.mp4">
+  <CoverSlide
+    where="Bekk Fagdag"
+    when="19. oktober"
+    what="Ta kontrollen over konsollen"
+    who="Kristofer Selbekk"
+  />
+</FullPageVideoBackground>
+
+---
+
+## Logging er viktig!
+
+- dokumentasjon
+- debugging
+- verktøy
+
+---
+
+## La oss titte på
+- loggnivå
+- formatering
+- gruppering
+- timing
+
+---
+
+<StandaloneHeading>
+  Basics
+</StandaloneHeading>
+
+---
+
+## Loggnivå
+```js
+console.log('hei fagdagen')
+
+console.debug('lavnivå-logging')
+console.info('informativ logging')
+console.warn('advar om deprecations etc')
+console.error('si ifra når noe gikk galt')
+```
+
+<Button onClick={() => {
+  console.debug('lavnivå-logging')
+  console.info('informativ logging')
+  console.warn('advar om deprecations etc')
+  console.error('si ifra når noe gikk galt')
+}}>Vis meg!</Button>
+
+---
+
+## String-konkatenering
+```js
+console.info(
+  'Hei %s, du er %d år gammel', 
+  user.name, 
+  user.age,
+);
+```
+
+<Button onClick={() => {
+  const user = { name: 'Kristofer', age: 31 };
+  console.info(
+    'Hei %s, du er %d år gammel', 
+    user.name, 
+    user.age,
+  );
+}}>Vis meg!</Button>
+
+---
+
+## Styling
+```js
+console.info(
+  'Du kan også %cstyle konsollen din', 
+  'background: darkblue; color: lightyellow; padding: 2px; font-style: italic;'
+)
+```
+
+<Button onClick={() => {
+  console.info(
+  'Du kan også %cstyle konsollen din', 
+  'background: darkblue; color: lightyellow; padding: 2px; font-style: italic;'
+)
+}}>Vis meg!</Button>
+
+---
+
+<StandaloneHeading>
+  Formatering
+</StandaloneHeading>
+
+---
+
+## Objekter og arrays
+```js
+const farkost = { fremdrift: 'damp', navn: 'tog' };
+
+console.info('Farkost:', farkost);
+```
+
+<Button onClick={() => {
+  const farkost = { fremdrift: 'damp', navn: 'tog' };
+  console.info('Farkost:', farkost);
+}}>Vis meg!</Button>
+
+---
+
+## Tabeller!
+```js
+console.table([
+  { navn: 'Kristofer', faggruppe: 'React' },
+  { navn: 'Erik', faggruppe: 'JavaScript' },
+  { navn: 'Olav', faggruppe: 'Sjefing' },
+])
+```
+
+<Button onClick={() => {
+  console.table([
+    { navn: 'Kristofer', faggruppe: 'React' },
+    { navn: 'Erik', faggruppe: 'JavaScript' },
+    { navn: 'Olav', faggruppe: 'Sjefing' },
+  ])
+}}>Vis meg!</Button>
+
+---
+
+## Gruppering
+```js
+console.group('action');
+console.info('previous state', state);
+console.info('action payload', action);
+console.info('next state', reducer(state, action));
+console.groupEnd('action');
+```
+
+<Button onClick={() => {
+  const action = { type: 'SAY_HI', name: 'Kris' };
+  const state = { salute: '' };
+  const reducer = (prevState, theAction) => {
+    if (theAction.type === 'SAY_HI') {
+      return { salute: `Hi ${theAction.name}` };
+    }
+    return state;
+  };
+  console.group('action');
+  console.info('previous state', state);
+  console.info('action payload', action);
+  console.info('next state', reducer(state, action));
+  console.groupEnd('action');
+}}>Vis meg!</Button>
+
+---
+
+<StandaloneHeading>
+  Debugging
+</StandaloneHeading>
+
+---
+
+
+## Stack-trace!
+```js
+console.trace('💥 bang')
+```
+
+<Button onClick={() => {
+  console.trace('💥 bang')
+}}>Vis meg!</Button>
+
+---
+
+## Minne
+```js
+console.log(console.memory);
+```
+
+<Button onClick={() => {
+  console.log(console.memory);
+}}>Vis meg!</Button>
+
+---
+
+## Timing
+```js
+console.time('TREG_KODE');
+const sortertListe = sorterListe(liste)
+console.timeEnd('TREG_KODE');
+```
+
+<Button onClick={() => {
+  const sorterListe = liste => ([...liste].sort());
+  const liste = 'dette er en liten setning';
+  
+  console.time('TREG_KODE');
+  const sortertListe = sorterListe(liste)
+  console.timeEnd('TREG_KODE');
+}}>Vis meg!</Button>
+
+---
+
+## Asserts
+```js
+console.assert(
+  Math.random() > 0.5, 
+  'Tilfeldig tall var ikke over .5', 
+);
+```
+
+<Button onClick={() => {
+  const rando = Math.random();
+  console.assert(
+    rando > 0.5, 
+    'Tilfeldig tall var ikke over .5', 
+    rando
+  );
+}}>Vis meg!</Button>
+
+---
+
+## Telling
+```js
+const lyder = ['tøff', 'tøff', 'tøff'];
+for (let lyd in lyder) {
+  console.count('lyd');
+}
+
+console.countReset('lyd');
+```
+
+<Button onClick={() => {
+  const lyder = ['tøff', 'tøff', 'tøff'];
+  for (let lyd in lyder) {
+    console.count('lyd');
+  }
+  console.countReset('lyd');
+}}>Vis meg!</Button>
+
+---
+
+## Profilering
+
+```js
+console.profile('sortering');
+const sortertListe = sorterListe(liste)
+console.profileEnd('sortering');
+```
+
+<Button onClick={() => {
+  const sorterListe = liste => ([...liste].sort());
+  const liste = 'dette er en liten setning';
+  
+  console.profile('sortering');
+  const sortertListe = sorterListe(liste)
+  console.profileEnd('sortering');
+}}>Vis meg!</Button>
+
+
+---
+
+## Sjekk ut
+
+- http://bit.ly/konsoll-referanse
+- http://bit.ly/konsoll-medium-artikkel
+
+---
+<StandaloneHeading>
+  👋 Takkhej
+</StandaloneHeading>
