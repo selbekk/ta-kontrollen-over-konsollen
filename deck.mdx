@@ -161,18 +161,6 @@ programmatisk!
 ---
 
 <StandaloneHeading>
-  Eksperimentere 👩‍🔬
-</StandaloneHeading>
-
-```notes
-Så nå har vi logget og debugget litt - men hva med å eksperimentere?
-Av og til vil man bare teste noe, endre noe litt kjapt, eller bare ha det gøy 
-med å endre overskrifter på Dagbladet
-```
-
----
-
-<StandaloneHeading>
   Tilgang til variabler 🔑
 </StandaloneHeading>
 
@@ -182,6 +170,17 @@ koden din har tilgang til i scopet den kjører i? Det lar deg eksperimentere med
 og manipulere koden din!
 ```
 
+---
+
+<StandaloneHeading>
+  Eksperimentere 👩‍🔬
+</StandaloneHeading>
+
+```notes
+Så nå har vi logget og debugget litt - men hva med å eksperimentere?
+Av og til vil man bare teste noe, endre noe litt kjapt, eller bare ha det gøy 
+med å endre overskrifter på Dagbladet
+```
 ---
 
 ## It's all about the $$
@@ -196,6 +195,21 @@ jQuery er kjempegammelt, men det var diggere å kunne skrive $ enn document.quer
 I consolen kan du fortsatt leve som det var 2009
 Funksjonen $ er et alias for document.querySelector 
 Funksjonen $$ er et alias for document.querySelectorAll
+```
+
+---
+
+## Inspektør! 🕵️‍
+
+```js
+inspect($('#logo'))
+```
+
+```notes
+Har du funnet et DOM-objekt du vil inspisere nærmere, kan du kalle inspect-funksjonen.
+Da åpnes DOM-inspektøren, og fokuserer elementet du oppga.
+
+Perfekt for når du debugger CSS og er for lat til å bruke musepekeren.
 ```
 
 ---
@@ -225,21 +239,6 @@ document.body.contenteditable = true;
 Hvis vennene dine tror du er en hacker fordi du kan endre overskriftene på 
 din favorittnettavis som du var en redaktør, så er dette trikset for deg. 
 Sett contenteditable til true, og hele websiden er redigerbar på 1-2-3!
-```
-
----
-
-## Inspektør! 🕵️‍
-
-```js
-inspect($('#logo'))
-```
-
-```notes
-Har du funnet et DOM-objekt du vil inspisere nærmere, kan du kalle inspect-funksjonen.
-Da åpnes DOM-inspektøren, og fokuserer elementet du oppga.
-
-Perfekt for når du debugger CSS og er for lat til å bruke musepekeren.
 ```
 
 ---
